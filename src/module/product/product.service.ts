@@ -1,4 +1,5 @@
 import { Inject, Injectable } from "@nestjs/common";
+import { throws } from "assert";
 import { MySQLProvider } from "src/database/mysql.provider";
 import { Product } from "./product.entity";
 
@@ -35,5 +36,10 @@ export class ProductService {
     const conn = await this.mysql.getConnection()
     await conn.query('insert into products (product, price) values (?, ?)', [entity.product, entity.price])
     return entity
+  }
+  async remove(id: string): Promise<Boolean> {
+    const conn = await this.mysql.getConnection()
+    await conn.query('delete from products where id = ? limit 1', [id])
+    return true
   }
 }

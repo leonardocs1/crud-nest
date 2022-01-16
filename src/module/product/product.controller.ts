@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common'
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common'
 import { Product } from './product.entity'
 import { ProductService } from './product.service'
 
@@ -16,5 +16,9 @@ export class ProductController {
   @Post()
   async create(@Body() product: Product): Promise<Product> {
     return this.productService.create(product)
+  }
+  @Delete(':id')
+  async remove(@Param('id') id: string): Promise<Boolean> {
+    return this.productService.remove(id)
   }
 }
