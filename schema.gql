@@ -8,16 +8,31 @@ type Product {
   price: Float!
 }
 
+type Category {
+  id: Float
+  category: String!
+}
+
 type Query {
   getAllProducts: [Product!]!
+  getAllCategories: [Category!]!
+  getCategoryById(id: String!): Category!
 }
 
 type Mutation {
   createProduct(input: ProductInput!): Product!
+  createCategory(input: CategoryInput!): Category!
+  removeCategory(id: String!): Boolean!
+  updateCategory(id: String!, input: CategoryInput!): Boolean!
 }
 
 input ProductInput {
   id: Float
   product: String!
   price: Float!
+}
+
+input CategoryInput {
+  id: Float
+  category: String!
 }

@@ -41,4 +41,9 @@ export class ProductService {
     await conn.query('delete from products where id = ? limit 1', [id])
     return true
   }
+  async update(id: number, entity: Product) {
+    const conn = await this.mysql.getConnection()
+    await conn.query('UPDATE products SET product = ?, price = ? WHERE id = ?', [entity.product, entity.price , id])
+    return true
+  }
 }
