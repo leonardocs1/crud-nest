@@ -1,5 +1,4 @@
 import { Inject, Injectable } from "@nestjs/common";
-import { throws } from "assert";
 import { MySQLProvider } from "src/database/mysql.provider";
 import { Product } from "./product.entity";
 
